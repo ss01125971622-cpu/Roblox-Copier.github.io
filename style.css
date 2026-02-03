@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #fff;
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #4a3aff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    font-size: 3.5rem;
+    color: #00eeff;
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px #00eeff;
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #00eeff, #3a7bd5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.panel {
+    flex: 1;
+    min-width: 300px;
+    background: rgba(20, 20, 40, 0.7);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #3a7bd5;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.panel h2 {
+    color: #00eeff;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.panel h2 i {
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #b0b0ff;
+    font-weight: 600;
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+    padding: 15px;
+    background: rgba(10, 10, 25, 0.8);
+    border: 2px solid #4a3aff;
+    border-radius: 10px;
+    color: #fff;
+    font-family: monospace;
+    font-size: 1rem;
+    resize: vertical;
+    transition: all 0.3s;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #00eeff;
+    box-shadow: 0 0 15px #00eeff55;
+}
+
+.input-field {
+    width: 100%;
+    padding: 15px;
+    background: rgba(10, 10, 25, 0.8);
+    border: 2px solid #4a3aff;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(to right, #3a7bd5, #00eeff);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background: linear-gradient(to right, #00eeff, #3a7bd5);
+    box-shadow: 0 0 20px #00eeff;
+    transform: translateY(-3px);
+}
+
+.steps {
+    list-style-type: none;
+}
+
+.steps li {
+    background: rgba(30, 30, 60, 0.6);
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #00eeff;
+    counter-increment: step-counter;
+    position: relative;
+    padding-left: 70px;
+}
+
+.steps li:before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #00eeff;
+    color: #000;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.highlight {
+    background-color: #1a1a2e;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    color: #ff7b72;
+    border: 1px solid #4a3aff;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #888;
+    font-size: 0.9rem;
+    border-top: 1px solid #333;
+    margin-top: 30px;
+}
+
+.alert {
+    background: rgba(255, 100, 100, 0.1);
+    border: 1px solid #ff5555;
+    color: #ffaaaa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: none;
+}
+
+.success {
+    background: rgba(100, 255, 100, 0.1);
+    border: 1px solid #55ff55;
+    color: #aaffaa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: none;
+}
+
+.loading {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
